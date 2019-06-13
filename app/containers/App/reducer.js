@@ -15,7 +15,9 @@ import { fromJS } from 'immutable';
 import {
   LOAD_FORUMS,
   LOAD_FORUMS_ERROR,
-  LOAD_FORUMS_SUCCESS
+  LOAD_FORUMS_SUCCESS,
+  LOAD_USER,
+  LOAD_USER_SUCCESS
 } from './constants';
 
 // The initial state of the App
@@ -42,6 +44,13 @@ function appReducer(state = initialState, action) {
 
     case LOAD_FORUMS_ERROR:
       return state.set('error', action.error).set('loading', false);
+    case LOAD_USER:
+      return state
+        .set('loading', true)
+        .set('error', 'false')
+        .set('currentUser', 'false');
+    case LOAD_USER_SUCCESS:
+      return state.set('loading', false).set('currentUser', action.user);
     default:
       return state;
   }

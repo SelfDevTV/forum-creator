@@ -18,7 +18,9 @@
 import {
   LOAD_FORUMS,
   LOAD_FORUMS_ERROR,
-  LOAD_FORUMS_SUCCESS
+  LOAD_FORUMS_SUCCESS,
+  LOAD_USER,
+  LOAD_USER_SUCCESS
 } from './constants';
 
 /**
@@ -60,3 +62,12 @@ export function forumsLoadingError(error) {
     error
   };
 }
+
+export const loadUser = () => ({
+  type: LOAD_USER
+});
+
+export const userLoaded = (user) => ({
+  type: LOAD_USER_SUCCESS,
+  user
+});

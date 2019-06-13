@@ -6,6 +6,7 @@ const { resolve } = require('path');
 const passport = require('passport');
 const session = require('express-session');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const logger = require('./util//logger');
 const argv = require('./util/argv');
 const port = require('./util//port');
@@ -14,6 +15,8 @@ const setup = require('./middlewares/frontendMiddleware');
 const app = express();
 
 dotenv.config();
+
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);

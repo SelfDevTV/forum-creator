@@ -15,6 +15,7 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import Navbar from 'containers/Navbar';
 import './style.scss';
 
 const App = () => (
@@ -25,13 +26,13 @@ const App = () => (
     >
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
-    <Header />
+    <Navbar />
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/features" component={FeaturePage} />
       <Route path="" component={NotFoundPage} />
     </Switch>
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );
 

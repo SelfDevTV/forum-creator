@@ -2,10 +2,10 @@ const router = require('express').Router();
 
 router.get('/me', async (req, res) => {
   const { user } = req;
+  console.log(user);
+  if (user) return res.json(user);
 
-  if (user) return res.send(user);
-
-  return res.send('Not logged in');
+  return res.json('Not logged in');
 });
 
 module.exports = router;
