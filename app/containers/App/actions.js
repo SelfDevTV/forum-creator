@@ -20,7 +20,11 @@ import {
   LOAD_FORUMS_ERROR,
   LOAD_FORUMS_SUCCESS,
   LOAD_USER,
-  LOAD_USER_SUCCESS
+  LOAD_USER_SUCCESS,
+  LOAD_USER_ERROR,
+  LOGOUT_USER,
+  LOGGED_OUT_USER,
+  LOGIN_USER
 } from './constants';
 
 /**
@@ -70,4 +74,21 @@ export const loadUser = () => ({
 export const userLoaded = (user) => ({
   type: LOAD_USER_SUCCESS,
   user
+});
+
+export const userLoadedError = (error) => ({
+  type: LOAD_USER_ERROR,
+  error
+});
+
+export const logoutUser = () => ({
+  type: LOGOUT_USER
+});
+
+export const userLoggedOut = () => ({
+  type: LOGGED_OUT_USER
+});
+
+export const loginUser = () => ({
+  type: LOGIN_USER
 });

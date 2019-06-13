@@ -17,7 +17,11 @@ import {
   LOAD_FORUMS_ERROR,
   LOAD_FORUMS_SUCCESS,
   LOAD_USER,
-  LOAD_USER_SUCCESS
+  LOAD_USER_SUCCESS,
+  LOAD_USER_ERROR,
+  LOGOUT_USER,
+  LOGGED_OUT_USER,
+  LOGIN_USER
 } from './constants';
 
 // The initial state of the App
@@ -51,6 +55,14 @@ function appReducer(state = initialState, action) {
         .set('currentUser', 'false');
     case LOAD_USER_SUCCESS:
       return state.set('loading', false).set('currentUser', action.user);
+    case LOAD_USER_ERROR:
+      return state.set('error', action.error).set('loading', false);
+    case LOGOUT_USER:
+      return state.set('loading', true);
+    case LOGGED_OUT_USER:
+      return state.set('currentUser', false).set('loading', false);
+    case LOGIN_USER:
+      return state.set('loading', true).set('error', false);
     default:
       return state;
   }

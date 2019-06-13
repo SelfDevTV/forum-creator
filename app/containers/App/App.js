@@ -16,24 +16,31 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Navbar from 'containers/Navbar';
+import { Container } from '@material-ui/core';
 import './style.scss';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from '../../theme';
 
 const App = () => (
-  <div className="app-wrapper">
-    <Helmet
-      titleTemplate="%s - React.js Boilerplate"
-      defaultTitle="React.js Boilerplate"
-    >
-      <meta name="description" content="A React.js Boilerplate application" />
-    </Helmet>
-    <Navbar />
-    <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/features" component={FeaturePage} />
-      <Route path="" component={NotFoundPage} />
-    </Switch>
-    {/* <Footer /> */}
-  </div>
+  <MuiThemeProvider theme={theme}>
+    <Container>
+      <Helmet
+        titleTemplate="%s - React.js Boilerplate"
+        defaultTitle="React.js Boilerplate"
+      >
+        <meta name="description" content="A React.js Boilerplate application" />
+      </Helmet>
+      <Navbar />
+
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/features" component={FeaturePage} />
+        <Route path="" component={NotFoundPage} />
+      </Switch>
+
+      {/* <Footer /> */}
+    </Container>
+  </MuiThemeProvider>
 );
 
 export default App;

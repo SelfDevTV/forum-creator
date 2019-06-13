@@ -19,16 +19,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Navbar = ({ signup, username, loadUser }) => {
+const Navbar = ({
+  signup, username, loadUser, logout, loading, login
+}) => {
   useEffect(() => {
     loadUser();
   }, []);
 
-  console.log('username???', username);
+  const handleSignUp = () => {
+    login();
+    window.open('/api/auth/facebook', '_self');
+  };
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" color="secondary">
         <Toolbar>
           <IconButton
             edge="start"
@@ -38,12 +44,26 @@ const Navbar = ({ signup, username, loadUser }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Forum
+          <Typography
+            color="inherit"
+            variant="h6"
+            className={classes.title}
+            align="center"
+          >
+            ComputerBase
           </Typography>
-          <Button color="inherit">
-            <a href="/api/auth/facebook">Sign In</a>
-          </Button>
+
+          {loading ? (
+            <p>Loading</p>
+          ) : username ? (
+            <Button onClick={logout} color="inherit">
+              Logout
+            </Button>
+          ) : (
+            <Button onClick={handleSignUp} color="inherit">
+              Sign In
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>

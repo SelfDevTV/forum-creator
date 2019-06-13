@@ -6,7 +6,8 @@ import injectSaga from 'utils/injectSaga';
 import {
   makeSelectForums,
   makeSelectLoading,
-  makeSelectError
+  makeSelectError,
+  makeSelectCurrentUser
 } from 'containers/App/selectors';
 import { loadForums } from '../App/actions';
 import { changeUsername } from './actions';
@@ -27,6 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = createStructuredSelector({
   forums: makeSelectForums(),
   username: makeSelectUsername(),
+  user: makeSelectCurrentUser(),
   loading: makeSelectLoading(),
   error: makeSelectError()
 });

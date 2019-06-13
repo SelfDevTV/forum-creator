@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
-import { LOAD_USER } from 'containers/App/constants';
-import { userLoaded } from 'containers/App/actions';
+import { userLoaded, userLoadedError, userLoggedOut } from './actions';
+import { LOAD_USER, LOGOUT_USER } from './constants';
 
 export function* getUser() {
   const requestURL = '/api/user/me';
@@ -17,10 +17,23 @@ export function* getUser() {
 
     yield put(userLoaded(user));
   } catch (err) {
-    // TODO: Add error
+    yield put(userLoadedError(err));
+  }
+}
+
+export function* logUserOut() {
+  const requestURL = '/api/auth/logout';
+
+  try {
+    yield call(request, requestURL);
+    yield put(userLoggedOut());
+  } catch (err) {
+    // TODO: Add error handling
+    alert(err);
   }
 }
 
 export default function* auth() {
   yield takeLatest(LOAD_USER, getUser);
+  yield takeLatest(LOGOUT_USER, logUserOut);
 }

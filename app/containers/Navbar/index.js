@@ -8,14 +8,16 @@ import {
   makeSelectError,
   makeSelectCurrentUser
 } from 'containers/App/selectors';
-import { loadUser } from 'containers/App/actions';
+import { loadUser, logoutUser, loginUser } from 'containers/App/actions';
 import reducer from 'containers/App/reducer';
+import saga from 'containers/App/saga';
 import Navbar from './Navbar';
-import saga from './saga';
 
 // TODO: add signup here
 const mapDispatchToProps = (dispatch) => ({
-  loadUser: () => dispatch(loadUser())
+  loadUser: () => dispatch(loadUser()),
+  logout: () => dispatch(logoutUser()),
+  login: () => dispatch(loginUser())
 });
 
 const mapStateToProps = createStructuredSelector({

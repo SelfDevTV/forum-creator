@@ -8,7 +8,7 @@ const CLIENT_URL = 'http://localhost:3000';
 router.get(
   '/facebook',
 
-  passport.authenticate('facebook', { scope: 'email' })
+  passport.authenticate('facebook', { scope: 'email', display: 'popup' })
 );
 
 //
@@ -26,8 +26,9 @@ router.get('/facebook/login', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
+  console.log('logout triggered');
   req.logout();
-  res.send('Logged out');
+  res.json(false);
 });
 
 /* Facebook Auth */
