@@ -45,16 +45,24 @@ router.get('/all', async (req, res) => {
   // We need: All the forums, with all subForums
   // and for each subForum we need it's posts and last poast
 
-  const all = await Forum.find({}).populate({
-    path: 'subForums',
-    populate: [{ path: 'lastPost' }, { path: 'posts' }]
-  });
+  try {
+    console.log('trying..');
+    const all = await Forum.find({}).populate({
+      path: 'subForums',
+      populate: [{ path: 'lastPost' }, { path: 'posts' }]
+    });
 
-  res.send(all);
+    console.log('still trying');
+
+    return res.json(all);
+  } catch (err) {
+    console.log('trying but error');
+    return res.json(err);
+  }
 });
 
 // Gets the forum by id and all its subs
-router.get('/:id', isAuthenticated, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const forum = await Forum.findById(req.params.id).populate('subForums');
     res.send(forum);

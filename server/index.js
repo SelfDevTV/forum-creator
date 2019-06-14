@@ -55,7 +55,9 @@ app.use('/api/playground', playgroundRoute);
 mongoose.connect(
   process.env.DB_CONNECT,
   { useNewUrlParser: true, useCreateIndex: true },
-  () => console.log('connected DB')
+  () => {
+    console.log('connected DB');
+  }
 );
 
 // In production we need to pass these values in instead of relying on webpack
