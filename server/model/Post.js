@@ -6,7 +6,11 @@ const postSchema = new mongoose.Schema({
   body: String,
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   replies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reply' }],
-  likes: Number
+  likes: Number,
+  date: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 const Post = mongoose.model('Post', postSchema);

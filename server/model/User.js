@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: false
+    required: false,
+    select: false
   },
   facebookId: {
     type: String,
@@ -27,7 +28,7 @@ const userSchema = new mongoose.Schema({
   replies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reply' }],
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now()
   }
 });
 

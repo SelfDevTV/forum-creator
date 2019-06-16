@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 
-mongoose.set('debug', true);
-
 const forumSchema = new mongoose.Schema({
   title: String,
-  subTitle: String,
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
-  subForums: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Subforum' }]
+  subForums: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Subforum' }],
+  date: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 const Forum = mongoose.model('Forum', forumSchema);

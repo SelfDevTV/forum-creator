@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +55,7 @@ const Navbar = ({
           </Typography>
 
           {loading ? (
-            <p>Loading</p>
+            <CircularProgress color="inherit" />
           ) : username ? (
             <Button onClick={logout} color="inherit">
               Logout

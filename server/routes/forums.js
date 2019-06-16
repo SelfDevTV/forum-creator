@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const isAuthenticated = require('../middlewares/isAuthenticated');
 const verifyAdmin = require('../middlewares/verifyAdmin');
 const Forum = require('../model/Forum');
 const SubForum = require('../model/SubForum');
@@ -46,17 +45,13 @@ router.get('/all', async (req, res) => {
   // and for each subForum we need it's posts and last poast
 
   try {
-    console.log('trying..');
     const all = await Forum.find({}).populate({
       path: 'subForums',
-      populate: [{ path: 'lastPost' }, { path: 'posts' }]
+      populate: { path: 'lastPost', populate: { path: 'user' } }
     });
-
-    console.log('still trying');
 
     return res.json(all);
   } catch (err) {
-    console.log('trying but error');
     return res.json(err);
   }
 });

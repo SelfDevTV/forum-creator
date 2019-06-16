@@ -19,7 +19,7 @@ export function* getForums() {
   try {
     // Call our request helper (see 'utils/request')
     const forums = yield call(request, requestURL);
-
+    console.warn(forums);
     yield put(forumsLoaded(forums));
   } catch (err) {
     yield put(forumsLoadingError(err));

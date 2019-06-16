@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 const replySchema = new mongoose.Schema({
   text: String,
   post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  date: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 const Reply = mongoose.model('Reply', replySchema);

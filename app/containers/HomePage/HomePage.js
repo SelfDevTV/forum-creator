@@ -15,6 +15,10 @@ import {
   makeStyles,
   Typography
 } from '@material-ui/core';
+import moment from 'moment';
+
+import SubforumGroup from 'components/SubforumGroup';
+import SubforumItem from 'components/SubforumItem';
 
 import { Helmet } from 'react-helmet';
 
@@ -29,12 +33,30 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const HomePage = ({ user }) => {
+const HomePage = ({ user, forums, loadForums }) => {
   useEffect(() => {
+    loadForums();
     console.log('hello from home, user: ', user);
-  });
+    console.log('here are the forums: ');
+  }, []);
 
   const classes = useStyles();
+
+  const renderForums = () => forums.map((forum) => (
+    <SubforumGroup title={forum.title} key={forum._id}>
+      {forum.subForums.map((sub) => (
+        <SubforumItem
+          title={sub.title}
+          subTitle={sub.subTitle}
+          lastPost={sub.lastPost.title}
+          lastPostUser={sub.lastPost.user.name}
+          time={moment(sub.lastPost.date).fromNow()}
+          subId={sub._id}
+          key={sub._id}
+        />
+      ))}
+    </SubforumGroup>
+  ));
 
   return (
     <article>
@@ -45,69 +67,7 @@ const HomePage = ({ user }) => {
           content="A React.js Boilerplate application homepage"
         />
       </Helmet>
-      <Paper className={classes.root}>
-        <List>
-          <ListItem>
-            <Typography variant="h5" color="secondary">
-              Hardware
-            </Typography>
-          </ListItem>
-          <Divider component="div" className={classes.divider} />
-
-          <ListItem>
-            <ListItemText
-              primary="Arbeitsspeicher"
-              secondary="Taktrate, Timings, Bauform und Hersteller der Speichermodule (RAM)"
-            />
-          </ListItem>
-          <Divider variant="middle" light />
-          <ListItem>
-            <ListItemText
-              primary="Arbeitsspeicher"
-              secondary="Taktrate, Timings, Bauform und Hersteller der Speichermodule (RAM)"
-            />
-          </ListItem>
-
-          <Divider variant="middle" light />
-          <ListItem>
-            <ListItemText
-              primary="Arbeitsspeicher"
-              secondary="Taktrate, Timings, Bauform und Hersteller der Speichermodule (RAM)"
-            />
-          </ListItem>
-        </List>
-      </Paper>
-      <Paper className={classes.root}>
-        <List>
-          <ListItem>
-            <Typography variant="h5" color="secondary">
-              Software
-            </Typography>
-          </ListItem>
-          <Divider variant="inset" />
-          <ListItem>
-            <ListItemText
-              primary="Arbeitsspeicher"
-              secondary="Taktrate, Timings, Bauform und Hersteller der Speichermodule (RAM)"
-            />
-          </ListItem>
-
-          <Divider />
-          <ListItem>
-            <ListItemText
-              primary="Arbeitsspeicher"
-              secondary="Taktrate, Timings, Bauform und Hersteller der Speichermodule (RAM)"
-            />
-          </ListItem>
-          <Divider />
-          <ListItem>
-            <ListItemText
-              primary="Arbeitsspeicher"
-              secondary="Taktrate, Timings, Bauform und Hersteller der Speichermodule (RAM)"
-            />
-          </ListItem>
-        </List>
-      </Paper>
+      {forums && renderForums()}
     </article>
   );
 };
