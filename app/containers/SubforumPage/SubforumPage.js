@@ -3,6 +3,12 @@
 
 import React from 'react';
 
-const SubforumPage = () => <h2>Hello Subforum page</h2>;
+const SubforumPage = (props) => {
+  const { id: subId } = props.match.params;
+
+  // TODO: Fetch details of this sub
+  console.log(subId);
+  return <h1>Hi</h1>;
+};
 
 export default SubforumPage;

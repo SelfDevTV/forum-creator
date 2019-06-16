@@ -6,7 +6,6 @@ const User = require('../model/User');
 
 // This is a protected route with the "isAuthenticated" middleware
 
-// TODO: save it into the user's posts array
 router.post('/new', isAuthenticated, async (req, res) => {
   console.log(req.body.subForumId);
   const post = new Post({

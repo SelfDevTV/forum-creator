@@ -27,7 +27,6 @@ module.exports = (passport) => {
         profileFields: ['id', 'displayName', 'email']
       },
       async (accessToken, refreshToken, profile, done) => {
-        // TODO: create new user and save it to the database
         try {
           const user = await User.findOne({ facebookId: profile.id });
 

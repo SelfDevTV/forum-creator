@@ -37,8 +37,6 @@ router.post('/newSub', verifyAdmin, async (req, res) => {
   }
 });
 
-// TODO: Do we really need to verify the token?
-
 router.get('/all', async (req, res) => {
   // Populating all field we need in the frontend
   // We need: All the forums, with all subForums

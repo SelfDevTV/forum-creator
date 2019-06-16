@@ -13,7 +13,6 @@ import reducer from 'containers/App/reducer';
 import saga from 'containers/App/saga';
 import Navbar from './Navbar';
 
-// TODO: add signup here
 const mapDispatchToProps = (dispatch) => ({
   loadUser: () => dispatch(loadUser()),
   logout: () => dispatch(logoutUser()),
