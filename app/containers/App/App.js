@@ -9,13 +9,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
-
 import HomePage from 'containers/HomePage/Loadable';
 import SubforumPage from 'containers/SubforumPage';
-import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 import Navbar from 'containers/Navbar';
 import { Container } from '@material-ui/core';
 import './style.scss';

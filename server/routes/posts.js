@@ -33,6 +33,16 @@ router.post('/new', isAuthenticated, async (req, res) => {
 
 // TODO: Posts by subForum Id.
 
+router.get('/bySubId', async (req, res) => {
+  try {
+    const sub = await Subforum.findById(req.query.subId).populate('posts');
+    const { posts } = sub;
+    return res.json(posts);
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+});
+
 router.get('/myposts', isAuthenticated, async (req, res) => {
   try {
     const posts = await Post.find({ user: req.userId });

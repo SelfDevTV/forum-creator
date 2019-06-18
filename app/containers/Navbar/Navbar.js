@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +17,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    textDecoration: 'none',
+    cursor: 'pointer'
   }
 }));
 
@@ -31,6 +34,8 @@ const Navbar = ({
     login();
     window.open('/api/auth/facebook', '_self');
   };
+
+  // TODO: Make a seperate component that handles the styles
 
   const classes = useStyles();
   return (
@@ -50,6 +55,8 @@ const Navbar = ({
             variant="h6"
             className={classes.title}
             align="center"
+            component={Link}
+            to="/"
           >
             ComputerBase
           </Typography>

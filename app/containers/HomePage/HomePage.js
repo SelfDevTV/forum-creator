@@ -36,8 +36,6 @@ const useStyles = makeStyles((theme) => ({
 const HomePage = ({ user, forums, loadForums }) => {
   useEffect(() => {
     loadForums();
-    console.log('hello from home, user: ', user);
-    console.log('here are the forums: ');
   }, []);
 
   const classes = useStyles();
