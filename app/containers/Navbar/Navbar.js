@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// TODO: Fix the wiggly screen on page change caused by CircularProgress from material
+
 const Navbar = ({
   signup, username, loadUser, logout, loading, login
 }) => {

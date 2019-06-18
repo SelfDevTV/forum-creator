@@ -7,7 +7,7 @@ import {
 
 const initialState = fromJS({
   posts: false,
-  loading: false,
+  loading: true,
   error: false
 });
 
