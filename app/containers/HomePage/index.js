@@ -9,18 +9,12 @@ import {
   makeSelectCurrentUser
 } from 'containers/App/selectors';
 import { loadForums } from '../App/actions';
-import { changeUsername } from './actions';
 
 import saga from './saga';
 import HomePage from './HomePage';
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-  loadForums: () => dispatch(loadForums()),
-  onSubmitForm: (evt) => {
-    if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    dispatch(loadForums());
-  }
+  loadForums: () => dispatch(loadForums())
 });
 
 const mapStateToProps = createStructuredSelector({

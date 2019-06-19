@@ -3,9 +3,9 @@
  */
 
 import { combineReducers } from 'redux';
-import history from 'utils/history';
 import { connectRouter } from 'connected-react-router';
 
+import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 
 /**

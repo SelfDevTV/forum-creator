@@ -5,11 +5,7 @@ import invariant from 'invariant';
 import conformsTo from 'lodash/conformsTo';
 
 import checkStore from './checkStore';
-import {
-  DAEMON,
-  ONCE_TILL_UNMOUNT,
-  RESTART_ON_REMOUNT,
-} from './constants';
+import { DAEMON, ONCE_TILL_UNMOUNT, RESTART_ON_REMOUNT } from './constants';
 
 const allowedModes = [RESTART_ON_REMOUNT, DAEMON, ONCE_TILL_UNMOUNT];
 
@@ -21,7 +17,7 @@ const checkKey = (key) => invariant(
 const checkDescriptor = (descriptor) => {
   const shape = {
     saga: isFunction,
-    mode: (mode) => isString(mode) && allowedModes.includes(mode),
+    mode: (mode) => isString(mode) && allowedModes.includes(mode)
   };
   invariant(
     conformsTo(descriptor, shape),
@@ -33,7 +29,10 @@ export function injectSagaFactory(store, isValid) {
   return function injectSaga(key, descriptor = {}, args) {
     if (!isValid) checkStore(store);
 
-    const newDescriptor = { ...descriptor, mode: descriptor.mode || RESTART_ON_REMOUNT };
+    const newDescriptor = {
+      ...descriptor,
+      mode: descriptor.mode || RESTART_ON_REMOUNT
+    };
     const { saga, mode } = newDescriptor;
 
     checkKey(key);
@@ -50,8 +49,14 @@ export function injectSagaFactory(store, isValid) {
       }
     }
 
-    if (!hasSaga || (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)) {
-      store.injectedSagas[key] = { ...newDescriptor, task: store.runSaga(saga, args) }; // eslint-disable-line no-param-reassign
+    if (
+      !hasSaga
+      || (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)
+    ) {
+      store.injectedSagas[key] = {
+        ...newDescriptor,
+        task: store.runSaga(saga, args)
+      }; // eslint-disable-line no-param-reassign
     }
   };
 }
@@ -81,6 +86,6 @@ export default function getInjectors(store) {
 
   return {
     injectSaga: injectSagaFactory(store, true),
-    ejectSaga: ejectSagaFactory(store, true),
+    ejectSaga: ejectSagaFactory(store, true)
   };
 }
