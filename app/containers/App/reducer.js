@@ -1,17 +1,3 @@
-/*
- * AppReducer
- *
- * The reducer takes care of our data. Using actions, we can change our
- * application state.
- * To add a new action, add it to the switch statement in the reducer function
- *
- * Example:
- * case YOUR_ACTION_CONSTANT:
- *   return state.set('yourStateVariable', true);
- */
-
-import { fromJS } from 'immutable';
-
 import {
   LOAD_FORUMS,
   LOAD_FORUMS_ERROR,
@@ -25,44 +11,87 @@ import {
 } from './constants';
 
 // The initial state of the App
-const initialState = fromJS({
+export const initialState = {
   loading: false,
   error: false,
   currentUser: false,
   forumData: {
     forums: false
   }
-});
+};
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_FORUMS:
-      return state
-        .set('loading', true)
-        .set('error', false)
-        .setIn(['forumData', 'forums'], false);
-    case LOAD_FORUMS_SUCCESS:
-      return state
-        .setIn(['forumData', 'forums'], action.forums)
-        .set('loading', false);
+    case LOAD_FORUMS: {
+      const newState = {
+        ...state,
+        loading: true,
+        error: false,
+        forumData: {
+          forums: false
+        }
+      };
+      return newState;
+    }
+    case LOAD_FORUMS_SUCCESS: {
+      const newState = {
+        ...state,
+        loading: false,
+        error: false,
+        forumData: {
+          forums: action.forums
+        }
+      };
+
+      return newState;
+    }
 
     case LOAD_FORUMS_ERROR:
-      return state.set('error', action.error).set('loading', false);
+      return { ...state, loading: false, error: action.error };
     case LOAD_USER:
-      return state
-        .set('loading', true)
-        .set('error', 'false')
-        .set('currentUser', 'false');
+      return {
+        ...state,
+        loading: true,
+        error: false,
+        currentUser: false
+      };
+
     case LOAD_USER_SUCCESS:
-      return state.set('loading', false).set('currentUser', action.user);
+      return {
+        ...state,
+        loading: false,
+        currentUser: action.user,
+        error: false
+      };
+
     case LOAD_USER_ERROR:
-      return state.set('error', action.error).set('loading', false);
+      return {
+        ...state,
+        error: action.error,
+        loading: false
+      };
+
     case LOGOUT_USER:
-      return state.set('loading', true);
+      return {
+        ...state,
+        loading: true
+      };
+
     case LOGGED_OUT_USER:
-      return state.set('currentUser', false).set('loading', false);
+      return {
+        ...state,
+        currentUser: false,
+        loading: false,
+        error: false
+      };
+
     case LOGIN_USER:
-      return state.set('loading', true).set('error', false);
+      return {
+        ...state,
+        loading: true,
+        error: false
+      };
+
     default:
       return state;
   }

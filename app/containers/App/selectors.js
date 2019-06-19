@@ -3,34 +3,35 @@
  */
 
 import { createSelector } from 'reselect';
+import { initialState } from './reducer';
 
-const selectGlobal = (state) => state.get('global');
+const selectGlobal = (state) => state.global || initialState;
 
-const selectRoute = (state) => state.get('route');
+const selectRoute = (state) => state.route;
 
 const makeSelectCurrentUser = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('currentUser')
+  (globalState) => globalState.currentUser
 );
 
 const makeSelectLoading = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('loading')
+  (globalState) => globalState.loading
 );
 
 const makeSelectError = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('error')
+  (globalState) => globalState.error
 );
 
 const makeSelectForums = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.getIn(['forumData', 'forums'])
+  (globalState) => globalState.forumData.forums
 );
 
 const makeSelectLocation = () => createSelector(
   selectRoute,
-  (routeState) => routeState.get('location').toJS()
+  (routeState) => routeState.location
 );
 
 export {
