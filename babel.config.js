@@ -8,7 +8,11 @@ module.exports = {
     ],
     '@babel/preset-react'
   ],
-  plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import'],
+  plugins: [
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-syntax-dynamic-import',
+    ['babel-plugin-styled-components', { fileName: false }]
+  ],
   env: {
     production: {
       only: ['app'],
@@ -20,7 +24,10 @@ module.exports = {
       ]
     },
     test: {
-      plugins: ['@babel/plugin-transform-modules-commonjs', 'dynamic-import-node']
+      plugins: [
+        '@babel/plugin-transform-modules-commonjs',
+        'dynamic-import-node'
+      ]
     }
   }
 };

@@ -4,23 +4,32 @@
 
 import { createSelector } from 'reselect';
 
-const selectPosts = (state) => state.get('posts');
+const selectSub = (state) => state.get('sub');
 
 const makeSelectPosts = () => createSelector(
-  selectPosts,
-  (postState) => postState.get('posts')
+  selectSub,
+  (subState) => subState.get('sub').posts
+);
+
+const makeSelectSub = () => createSelector(
+  selectSub,
+  (subState) => subState.get('sub')
 );
 
 const makeSelectLoading = () => createSelector(
-  selectPosts,
-  (postState) => postState.get('loading')
+  selectSub,
+  (subState) => subState.get('loading')
 );
 
 const makeSelectError = () => createSelector(
-  selectPosts,
-  (postState) => postState.get('error')
+  selectSub,
+  (subState) => subState.get('error')
 );
 
 export {
-  selectPosts, makeSelectPosts, makeSelectLoading, makeSelectError
+  selectSub,
+  makeSelectPosts,
+  makeSelectLoading,
+  makeSelectError,
+  makeSelectSub
 };

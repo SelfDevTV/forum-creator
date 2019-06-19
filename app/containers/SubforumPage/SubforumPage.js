@@ -3,25 +3,18 @@ import { CircularProgress } from '@material-ui/core';
 import PostsGroup from 'components/PostsGroup';
 
 const SubforumPage = ({
-  match, loading, posts, loadPosts
+  match, loading, posts, loadSub, sub, error
 }) => {
   useEffect(() => {
     const { id: subId } = match.params;
-    loadPosts(subId);
+    loadSub(subId);
   }, []);
+
+  console.log('posts', posts);
 
   if (loading) return <CircularProgress />;
 
-  return <PostsGroup posts={posts || []} />;
+  return <PostsGroup posts={posts || []} sub={sub || false} error={error} />;
 };
-
-// const SubforumPage = (props) => {
-//   useEffect(() => {
-//     console.log(props.match);
-//   }, []);
-//   console.log(props);
-
-//   return <h3>Hi</h3>;
-// };
 
 export default SubforumPage;

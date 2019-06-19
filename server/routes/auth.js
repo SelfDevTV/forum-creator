@@ -21,12 +21,10 @@ router.get(
 );
 
 router.get('/facebook/login', (req, res) => {
-  console.log(req.user);
   res.redirect(CLIENT_URL);
 });
 
 router.get('/logout', (req, res) => {
-  console.log('logout triggered');
   req.logout();
   res.json(false);
 });

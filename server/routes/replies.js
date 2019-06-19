@@ -16,7 +16,6 @@ router.post('/new', isAuthenticated, async (req, res) => {
   // Save the new Reply into the Users replies array
   // also save the reply in the corresponding post
   try {
-    console.log('hiho');
     await reply.save();
     const user = await User.findById(req.userId);
     user.replies.push(reply.id);

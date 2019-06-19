@@ -1,31 +1,27 @@
 import { fromJS } from 'immutable';
-import {
-  FETCHED_POSTS_SUCCESS,
-  FETCHED_POSTS_ERROR,
-  FETCH_POSTS
-} from './constants';
+import { FETCH_SUB, FETCHED_SUB_SUCCESS, FETCHED_SUB_ERROR } from './constants';
 
 const initialState = fromJS({
-  posts: false,
+  sub: false,
   loading: true,
   error: false
 });
 
-const postsReducer = (state = initialState, action) => {
+const subReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_POSTS:
-      return state.set('loading', true).set('error: false');
-    case FETCHED_POSTS_SUCCESS:
+    case FETCH_SUB:
+      return state.set('loading', true).set('error', false);
+    case FETCHED_SUB_SUCCESS:
       return state
         .set('loading', false)
-        .set('error: false')
-        .set('posts', action.posts);
+        .set('error', false)
+        .set('sub', action.sub);
 
-    case FETCHED_POSTS_ERROR:
-      return state.set('loading', false).set('error:', action.error);
+    case FETCHED_SUB_ERROR:
+      return state.set('error', action.error).set('loading', false);
     default:
       return state;
   }
 };
 
-export default postsReducer;
+export default subReducer;

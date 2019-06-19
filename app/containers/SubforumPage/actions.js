@@ -1,20 +1,16 @@
-import {
-  FETCH_POSTS,
-  FETCHED_POSTS_ERROR,
-  FETCHED_POSTS_SUCCESS
-} from './constants';
+import { FETCHED_SUB_ERROR, FETCHED_SUB_SUCCESS, FETCH_SUB } from './constants';
 
-export const startFetchingPosts = (subId) => ({
-  type: FETCH_POSTS,
+export const startFetchingSub = (subId) => ({
+  type: FETCH_SUB,
   subId
 });
 
-export const successFetchingPosts = (posts) => ({
-  type: FETCHED_POSTS_SUCCESS,
-  posts
+export const successFetchingSub = (sub) => ({
+  type: FETCHED_SUB_SUCCESS,
+  sub
 });
 
-export const errorFetchingPosts = (error) => ({
-  type: FETCHED_POSTS_ERROR,
+export const errorFetchingSub = (error) => ({
+  type: FETCHED_SUB_ERROR,
   error
 });

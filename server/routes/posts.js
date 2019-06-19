@@ -7,7 +7,6 @@ const User = require('../model/User');
 // This is a protected route with the "isAuthenticated" middleware
 
 router.post('/new', isAuthenticated, async (req, res) => {
-  console.log(req.body.subForumId);
   const post = new Post({
     title: req.body.title,
     body: req.body.body,
@@ -31,12 +30,10 @@ router.post('/new', isAuthenticated, async (req, res) => {
   }
 });
 
-
 router.get('/bySubId', async (req, res) => {
   try {
     const sub = await Subforum.findById(req.query.subId).populate('posts');
-    const { posts } = sub;
-    return res.json(posts);
+    return res.json(sub);
   } catch (err) {
     return res.status(400).json(err);
   }
