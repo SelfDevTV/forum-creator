@@ -1,4 +1,3 @@
-import { fromJS } from 'immutable';
 import { FETCH_SUB, FETCHED_SUB_SUCCESS, FETCHED_SUB_ERROR } from './constants';
 
 const initialState = {
