@@ -12,7 +12,7 @@ export default ({ key, saga, mode }) => (WrappedComponent) => {
   class InjectSaga extends React.Component {
     static WrappedComponent = WrappedComponent;
 
-    static contextTypes = ReactReduxContext;
+    static contextType = ReactReduxContext;
 
     static displayName = `withSaga(${WrappedComponent.displayName
       || WrappedComponent.name
