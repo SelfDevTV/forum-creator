@@ -31,7 +31,6 @@ router.post('/new', isAuthenticated, async (req, res) => {
   }
 });
 
-// TODO: Posts by subForum Id.
 
 router.get('/bySubId', async (req, res) => {
   try {

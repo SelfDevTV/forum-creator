@@ -11,14 +11,12 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage';
 import SubforumPage from 'containers/SubforumPage';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import NotFoundPage from 'containers/NotFoundPage';
 import Navbar from 'containers/Navbar';
 import { Container } from '@material-ui/core';
 import './style.scss';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from '../../theme';
-
-// TODO: Delete unnecessary Containers and components
 
 const App = () => (
   <MuiThemeProvider theme={theme}>
