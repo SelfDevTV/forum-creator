@@ -6,15 +6,7 @@
 
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
-  Paper,
-  makeStyles,
-  Typography
-} from '@material-ui/core';
+
 import moment from 'moment';
 
 import SubforumGroup from 'components/SubforumGroup';
@@ -22,35 +14,23 @@ import SubforumItem from 'components/SubforumItem';
 
 import { Helmet } from 'react-helmet';
 
-import './style.scss';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: 10
-  },
-  divider: {
-    backgroundColor: theme.palette.primary
-  }
-}));
-
 const HomePage = ({ user, forums, loadForums }) => {
   useEffect(() => {
     loadForums();
   }, []);
 
-  const classes = useStyles();
-
   const renderForums = () => forums.map((forum) => (
-    <SubforumGroup title={forum.title} key={forum._id}>
-      {forum.subForums.map((sub) => (
+    <SubforumGroup title={forum.title} key={forum.id}>
+      {forum.subForums.map((sub, id) => (
         <SubforumItem
           title={sub.title}
           subTitle={sub.subTitle}
-          lastPost={sub.lastPost.title}
-          lastPostUser={sub.lastPost.user.name}
-          time={moment(sub.lastPost.date).fromNow()}
-          subId={sub._id}
-          key={sub._id}
+          lastPost={sub.posts.length > 0 && sub.lastPost.title}
+          lastPostUser={sub.posts.length > 0 && sub.lastPost.user.name}
+          time={sub.posts.length > 0 && moment(sub.lastPost.date).fromNow()}
+          subId={sub.id}
+          key={sub.id}
+          isLastItem={id !== forum.subForums.length - 1}
         />
       ))}
     </SubforumGroup>

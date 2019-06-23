@@ -17,15 +17,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// TODO: Styled components
+
 const SubforumGroup = ({ title, children }) => {
   const classes = useStyles();
   return (
     <Paper className={classes.root}>
       <List>
         <ListItem>
-          <Typography variant="h5" color="secondary">
-            {title}
-          </Typography>
+          <Typography variant="h6">{title}</Typography>
         </ListItem>
         <Divider />
         {children}

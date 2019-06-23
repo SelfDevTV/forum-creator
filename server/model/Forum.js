@@ -10,6 +10,15 @@ const forumSchema = new mongoose.Schema({
   }
 });
 
+forumSchema.virtual('id').get(function transformToId() {
+  return this._id; // eslint-disable-line
+});
+
+// Ensure virtual fields are serialised.
+forumSchema.set('toJSON', {
+  virtuals: true
+});
+
 const Forum = mongoose.model('Forum', forumSchema);
 
 module.exports = Forum;

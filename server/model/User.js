@@ -32,6 +32,15 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+userSchema.virtual('id').get(function transformToId() {
+  return this._id; // eslint-disable-line
+});
+
+// Ensure virtual fields are serialised.
+userSchema.set('toJSON', {
+  virtuals: true
+});
+
 userSchema.pre('save', async function encrypt(next) {
   const user = this;
 

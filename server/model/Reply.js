@@ -11,6 +11,15 @@ const replySchema = new mongoose.Schema({
   }
 });
 
+replySchema.virtual('id').get(function transformToId() {
+  return this._id; // eslint-disable-line
+});
+
+// Ensure virtual fields are serialised.
+replySchema.set('toJSON', {
+  virtuals: true
+});
+
 const Reply = mongoose.model('Reply', replySchema);
 
 module.exports = Reply;

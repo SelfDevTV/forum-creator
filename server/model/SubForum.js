@@ -12,6 +12,15 @@ const subForumSchema = new mongoose.Schema({
   }
 });
 
+subForumSchema.virtual('id').get(function transformToId() {
+  return this._id; // eslint-disable-line
+});
+
+// Ensure virtual fields are serialised.
+subForumSchema.set('toJSON', {
+  virtuals: true
+});
+
 const SubForum = mongoose.model('Subforum', subForumSchema);
 
 module.exports = SubForum;

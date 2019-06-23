@@ -10,8 +10,6 @@ const SubforumPage = ({
     loadSub(subId);
   }, []);
 
-  console.log('posts', posts);
-
   if (loading) return <CircularProgress />;
 
   return <PostsGroup posts={posts || []} sub={sub || false} error={error} />;

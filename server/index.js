@@ -7,6 +7,7 @@ const passport = require('passport');
 const session = require('express-session');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const renameIdPlugin = require('mongoose-rename-id');
 const logger = require('./util//logger');
 const argv = require('./util/argv');
 const port = require('./util//port');

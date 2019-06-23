@@ -56,6 +56,7 @@ router.get('/all', async (req, res) => {
 
 // Gets the forum by id and all its subs
 router.get('/:id', async (req, res) => {
+  console.log(req.params.id);
   try {
     const forum = await Forum.findById(req.params.id).populate('subForums');
     res.send(forum);

@@ -48,7 +48,9 @@
     "lodash": "4.17.11",
     "minimist": "1.2.0",
     "moment": "^2.24.0",
+    "mongo-seeding": "^3.2.0",
     "mongoose": "^5.5.12",
+    "mongoose-rename-id": "^1.0.2",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
     "prop-types": "^15.7.2",
@@ -62,6 +64,7 @@
     "redux-saga": "1.0.3",
     "reselect": "4.0.0",
     "sanitize.css": "10.0.0",
+    "seedgoose": "^1.1.4",
     "styled-components": "^4.3.1",
     "warning": "^4.0.3",
     "whatwg-fetch": "3.0.0"
