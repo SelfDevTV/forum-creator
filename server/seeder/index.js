@@ -1,8 +1,6 @@
 const path = require('path');
 const { Seeder } = require('mongo-seeding');
 
-console.log('path is: ', path.resolve('./server/seeder/data'));
-
 const config = {
   database: {
     name: 'forum'
@@ -16,8 +14,6 @@ const collections = seeder.readCollectionsFromPath(
     transformers: [Seeder.Transformers.replaceDocumentIdWithUnderscoreId]
   }
 );
-
-console.log(collections);
 
 seeder
   .import(collections)

@@ -1,37 +1,39 @@
 import React from 'react';
-import {
-  List,
-  ListItem,
-  Divider,
-  Paper,
-  makeStyles,
-  Typography
-} from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: 10
-  },
-  divider: {
-    backgroundColor: theme.palette.primary
-  }
-}));
+import styled from 'styled-components';
 
-// TODO: Styled components
+const ForumContainer = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+`;
 
-const SubforumGroup = ({ title, children }) => {
-  const classes = useStyles();
-  return (
-    <Paper className={classes.root}>
+const ForumTitle = styled.h1`
+  padding: 8px 16px;
+  font-size: 22px;
+  font-weight: 800;
+  font-family: 'Roboto';
+  margin: 0;
+  color: rebeccapurple;
+  text-transform: uppercase;
+  border-bottom: 2px solid rebeccapurple;
+`;
+
+const SubforumGroup = ({ title, children }) => (
+  <ForumContainer>
+    <ForumTitle>{title}</ForumTitle>
+    {children}
+  </ForumContainer>
+);
+
+export default SubforumGroup;
+
+/* <Paper className={classes.root} square>
       <List>
-        <ListItem>
+        <ListItem style={{ backgoundColor: 'orange' }}>
           <Typography variant="h6">{title}</Typography>
         </ListItem>
         <Divider />
         {children}
       </List>
-    </Paper>
-  );
-};
-
-export default SubforumGroup;
+    </Paper> */

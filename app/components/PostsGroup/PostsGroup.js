@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import NotfoundPage from 'containers/NotfoundPage';
+import NotfoundPage from 'containers/NotFoundPage';
 
 const Container = styled.div``;
 
@@ -14,29 +14,19 @@ const PostsContainer = styled.div`
   border-radius: 2px;
 `;
 
-const SubforumTitle = styled.li`
+const SubforumTitle = styled.h1`
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  color: white;
+  color: black;
 `;
 
-const PostsGroup = ({ posts, sub, error }) => {
-  console.log(error);
+const PostsGroup = ({ sub, error, children }) => {
   if (error) return <NotfoundPage />;
 
   return (
     <Container>
-      <PostsContainer>
-        <h2>Postgroup props: </h2>
-        {posts.map((post) => (
-          <>
-            <SubforumTitle>{post.title}</SubforumTitle>
-            <li>{post.body}</li>
-            <li>{sub.title}</li>
-            <li>{sub.subTitle}</li>
-          </>
-        ))}
-      </PostsContainer>
+      <SubforumTitle>{sub.title}</SubforumTitle>
+      <PostsContainer>{children}</PostsContainer>
     </Container>
   );
 };
