@@ -1,9 +1,4 @@
-import React, { Fragment } from 'react';
-import {
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction
-} from '@material-ui/core';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -74,7 +69,11 @@ const SubforumItem = ({
   time,
   subId
 }) => (
-  <ItemContainer as={Link} to={`/sub/${subId}`} islastitem={isLastItem}>
+  <ItemContainer
+    as={Link}
+    to={`/sub/${subId}`}
+    islastitem={isLastItem.toString()}
+  >
     <TitleContainer>
       <Title>{title}</Title>
       <Subtitle>{subTitle}</Subtitle>
@@ -89,19 +88,3 @@ const SubforumItem = ({
 );
 
 export default SubforumItem;
-
-{
-  /* <ListItem component={Link} to={`/sub/${subId}`}>
-      <ListItemText primary={title} secondary={subTitle} />
-
-      <ListItemSecondaryAction>
-        <ListItemText
-          style={{ textAlign: 'center' }}
-          primary={lastPost || 'No Posts Yet'}
-          secondary={lastPost && `${lastPostUser} - ${time}`}
-        />
-      </ListItemSecondaryAction>
-    </ListItem>
-
-    {shouldRenderDivider && <Divider variant="middle" light />} */
-}
