@@ -45,7 +45,7 @@
     "hoist-non-react-statics": "3.3.0",
     "invariant": "2.2.4",
     "ip": "1.1.5",
-    "lodash": "4.17.11",
+    "lodash": "4.17.19",
     "minimist": "1.2.0",
     "moment": "^2.24.0",
     "mongo-seeding": "^3.2.0",
