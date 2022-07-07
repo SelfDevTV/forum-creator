@@ -47,7 +47,7 @@
     "ip": "1.1.5",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongo-seeding": "^3.2.0",
     "mongoose": "^5.5.12",
     "passport": "^0.4.0",
